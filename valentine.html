@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Valentine</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #c1121f;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    /* floating hearts */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: white;
+      transform: rotate(45deg);
+      animation: float 8s linear infinite;
+      opacity: 0.7;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(110vh) rotate(45deg);
+      }
+      to {
+        transform: translateY(-10vh) rotate(45deg);
+      }
+    }
+
+    .container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+      z-index: 10;
+    }
+
+    h1 {
+      font-size: 52px;
+      margin-bottom: 40px;
+    }
+
+    button {
+      font-size: 26px;
+      padding: 18px 50px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      margin: 20px;
+      position: relative;
+    }
+
+    #yes {
+      background: white;
+      color: #c1121f;
+    }
+
+    #no {
+      background: #ffccd5;
+      color: #800f2f;
+      position: absolute;
+    }
+
+    .message {
+      display: none;
+      font-size: 60px;
+      font-weight: bold;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Chichuuu Babyyyy will you be my Valentine?</h1>
+    <button id="yes">YES</button>
+    <button id="no">NO</button>
+    <div class="message" id="msg">YAYYYY Babyyyyyy love u so much and sorry if I did something wrong..I Love you the most<3</div>
+  </div>
+
+  <script>
+    // create hearts
+    for (let i = 0; i < 30; i++) {
+      const heart = document.createElement("div");
+      heart.className = "Heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+      heart.style.opacity = Math.random();
+      document.body.appendChild(heart);
+    }
+
+    // no button moves
+    const noBtn = document.getElementById("no");
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 100);
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    });
+
+    // yes click message
+    document.getElementById("yes").onclick = () => {
+      document.getElementById("msg").style.display = "block";
+    };
+  </script>
+
+</body>
+</html>
